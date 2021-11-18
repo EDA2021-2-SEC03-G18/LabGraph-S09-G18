@@ -214,6 +214,7 @@ def totalConnections(analyzer):
     return gr.numEdges(analyzer['connections'])
 
 
+
 def servedRoutes(analyzer):
     """
     Retorna la estación que sirve a mas rutas.

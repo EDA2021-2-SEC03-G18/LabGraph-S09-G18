@@ -31,7 +31,7 @@ import threading
 from App import controller
 from DISClib.ADT import stack
 assert config
-
+import time  
 """
 La vista se encarga de la interacción con el usuario.
 Presenta el menu de opciones  y  por cada seleccion
@@ -44,7 +44,7 @@ operación seleccionada.
 # ___________________________________________________
 
 
-servicefile = 'bus_routes_14000.csv'
+servicefile = 'bus_routes_3000.csv'
 initialStation = None
 
 # ___________________________________________________
@@ -84,7 +84,8 @@ def optionThree(cont):
 
 def optionFour(cont, initialStation):
     controller.minimumCostPaths(cont, initialStation)
-
+    
+    
 
 def optionFive(cont, destStation):
     haspath = controller.hasPath(cont, destStation)
@@ -133,18 +134,25 @@ def thread_cycle():
             optionThree(cont)
 
         elif int(inputs[0]) == 4:
+            
             msg = "Estación Base: BusStopCode-ServiceNo (Ej: 75009-10): "
             initialStation = input(msg)
+            start_time = time.process_time()
             optionFour(cont, initialStation)
-
+            stop_time = time.process_time()
+            total_time = (stop_time - start_time)
+            print(total_time)
         elif int(inputs[0]) == 5:
             destStation = input("Estación destino (Ej: 15151-10): ")
             optionFive(cont, destStation)
 
         elif int(inputs[0]) == 6:
+            start_time = time.process_time()
             destStation = input("Estación destino (Ej: 15151-10): ")
             optionSix(cont, destStation)
-
+            stop_time = time.process_time()
+            total_time = (stop_time - start_time)
+            print(total_time)
         elif int(inputs[0]) == 7:
             optionSeven(cont)
 
